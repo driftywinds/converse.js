@@ -33,6 +33,10 @@ COPY --from=builder /app/sounds /app/sounds
 COPY --from=builder /app/logo /app/logo
 COPY --from=builder /app/3rdparty /app/3rdparty
 COPY --from=builder /app/src/website.js /app/src/website.js
+COPY --from=builder /app/manifest.json /app/
+
+# Create simple redirect from index.html to fullscreen.html
+RUN echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/fullscreen.html"></head><body>Redirecting...</body></html>' > /app/index.html
 
 WORKDIR /app
 
